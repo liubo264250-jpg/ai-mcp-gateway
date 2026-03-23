@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.liubo</groupId>
+    <artifactId>ai-mcp-gateway</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>ai-mcp-gateway-app</module>
+        <module>ai-mcp-gateway-infrastructure</module>
+        <module>ai-mcp-gateway-domain</module>
+        <module>ai-mcp-gateway-case</module>
+        <module>ai-mcp-gateway-api</module>
+        <module>ai-mcp-gateway-tigger</module>
+        <module>ai-mcp-gateway-types</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <lombok.version>1.18.36</lombok.version>
+        <hutool-all.version>5.8.41</hutool-all.version>
+        <ai-mcp-gateway-api.version>1.0.0</ai-mcp-gateway-api.version>
+        <ai-mcp-gateway-domain.version>1.0.0</ai-mcp-gateway-domain.version>
+        <ai-mcp-gateway-infrastructure.version>1.0.0</ai-mcp-gateway-infrastructure.version>
+        <ai-mcp-gateway-trigger.version>1.0.0</ai-mcp-gateway-trigger.version>
+        <ai-mcp-gateway-types.version>1.0.0</ai-mcp-gateway-types.version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
+    </parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
+            <!-- 工程模块 -->
+            <dependency>
+                <groupId>com.liubo</groupId>
+                <artifactId>ai-mcp-gateway-api</artifactId>
+                <version>${ai-mcp-gateway-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liubo</groupId>
+                <artifactId>ai-mcp-gateway-domain</artifactId>
+                <version>${ai-mcp-gateway-domain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liubo</groupId>
+                <artifactId>ai-mcp-gateway-infrastructure</artifactId>
+                <version>${ai-mcp-gateway-infrastructure.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liubo</groupId>
+                <artifactId>ai-mcp-gateway-types</artifactId>
+                <version>${ai-mcp-gateway-types.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liubo</groupId>
+                <artifactId>ai-mcp-gateway-trigger</artifactId>
+                <version>${ai-mcp-gateway-trigger.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
