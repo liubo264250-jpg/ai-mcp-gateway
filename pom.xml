@@ -27,8 +27,11 @@
         <ai-mcp-gateway-api.version>1.0.0</ai-mcp-gateway-api.version>
         <ai-mcp-gateway-domain.version>1.0.0</ai-mcp-gateway-domain.version>
         <ai-mcp-gateway-infrastructure.version>1.0.0</ai-mcp-gateway-infrastructure.version>
-        <ai-mcp-gateway-trigger.version>1.0.0</ai-mcp-gateway-trigger.version>
+        <ai-mcp-gateway-tigger.version>1.0.0</ai-mcp-gateway-tigger.version>
+        <ai-mcp-gateway-case.version>1.0.0</ai-mcp-gateway-case.version>
         <ai-mcp-gateway-types.version>1.0.0</ai-mcp-gateway-types.version>
+        <xfg-wrench-starter-design-framework.version>3.0.0</xfg-wrench-starter-design-framework.version>
+        <logback.version>1.5.16</logback.version>
     </properties>
 
     <parent>
@@ -39,6 +42,16 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -72,8 +85,28 @@
             </dependency>
             <dependency>
                 <groupId>com.liubo</groupId>
-                <artifactId>ai-mcp-gateway-trigger</artifactId>
-                <version>${ai-mcp-gateway-trigger.version}</version>
+                <artifactId>ai-mcp-gateway-tigger</artifactId>
+                <version>${ai-mcp-gateway-tigger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liubo</groupId>
+                <artifactId>ai-mcp-gateway-case</artifactId>
+                <version>${ai-mcp-gateway-case.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.bugstack.wrench</groupId>
+                <artifactId>xfg-wrench-starter-design-framework</artifactId>
+                <version>${xfg-wrench-starter-design-framework.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-classic</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-core</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>

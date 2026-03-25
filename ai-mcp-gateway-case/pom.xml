@@ -23,8 +23,18 @@
             <artifactId>ai-mcp-gateway-domain</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.liubo</groupId>
-            <artifactId>ai-mcp-gateway-types</artifactId>
+            <groupId>cn.bugstack.wrench</groupId>
+            <artifactId>xfg-wrench-starter-design-framework</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>

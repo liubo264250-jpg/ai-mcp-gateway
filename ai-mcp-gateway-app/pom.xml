@@ -21,11 +21,31 @@
         <!--        工程模块-->
         <dependency>
             <groupId>com.liubo</groupId>
-            <artifactId>ai-mcp-gateway-domain</artifactId>
+            <artifactId>ai-mcp-gateway-infrastructure</artifactId>
         </dependency>
         <dependency>
             <groupId>com.liubo</groupId>
-            <artifactId>ai-mcp-gateway-infrastructure</artifactId>
+            <artifactId>ai-mcp-gateway-tigger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.liubo</groupId>
+            <artifactId>ai-mcp-gateway-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
         </dependency>
     </dependencies>
 

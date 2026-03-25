@@ -30,6 +30,10 @@
             <groupId>com.liubo</groupId>
             <artifactId>ai-mcp-gateway-domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.liubo</groupId>
+            <artifactId>ai-mcp-gateway-case</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
