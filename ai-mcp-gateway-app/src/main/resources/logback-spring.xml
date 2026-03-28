@@ -106,7 +106,7 @@
 
     <!-- ✅ 开发环境：只输出到控制台 -->
     <springProfile name="dev">
-        <logger name="com.liubo.ai" level="debug"/>
+        <logger name="com.liubo.app" level="debug"/>
         <root level="info">
             <appender-ref ref="CONSOLE"/>
         </root>

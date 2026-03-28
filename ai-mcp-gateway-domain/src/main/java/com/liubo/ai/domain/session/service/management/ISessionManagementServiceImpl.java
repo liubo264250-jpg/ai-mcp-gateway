@@ -1,4 +1,4 @@
-package com.liubo.ai.domain.session.service.impl;
+package com.liubo.ai.domain.session.service.management;
 
 import cn.hutool.core.util.StrUtil;
 import com.liubo.ai.domain.session.model.valobj.SessionConfigVO;
@@ -41,7 +41,7 @@ public class ISessionManagementServiceImpl implements ISessionManagementService 
                 .onBackpressureBuffer();// 背压策略：数据发太快时先存入缓冲区
         SessionConfigVO sessionConfigVO = new SessionConfigVO(sessionId, sink);
         // 发送消息
-        String messageEndpoint = "/" + gatewayId + "/mcp/message?sessionId=" + sessionId;
+        String messageEndpoint = "/api-gateway/" + gatewayId + "/mcp/sse?sessionId=" + sessionId;
         sink.tryEmitNext(ServerSentEvent.<String>builder()
                 .event("endpoint")
                 .data(messageEndpoint)

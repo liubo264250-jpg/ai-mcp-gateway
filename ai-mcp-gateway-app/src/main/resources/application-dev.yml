@@ -14,8 +14,17 @@ thread:
         block-queue-size: 5000
         policy: CallerRunsPolicy
 
+
 # 日志
 logging:
   level:
     root: info
   config: classpath:logback-spring.xml
+spring:
+  ai:
+    openai:
+      base-url: https://apis.itedus.cn
+      api-key: sk-rHYRhuAbH9FVTPI3409a5e97Dd85435cAf14E3E0C2F15e55
+      chat:
+        options:
+          model: gpt-4.1-mini

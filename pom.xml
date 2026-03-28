@@ -31,7 +31,8 @@
         <ai-mcp-gateway-case.version>1.0.0</ai-mcp-gateway-case.version>
         <ai-mcp-gateway-types.version>1.0.0</ai-mcp-gateway-types.version>
         <xfg-wrench-starter-design-framework.version>3.0.0</xfg-wrench-starter-design-framework.version>
-        <logback.version>1.5.16</logback.version>
+        <spring-ai-bom.version>1.0.0</spring-ai-bom.version>
+        <fastjson.version>2.0.28</fastjson.version>
     </properties>
 
     <parent>
@@ -43,14 +44,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
-                <version>${logback.version}</version>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -97,16 +93,13 @@
                 <groupId>cn.bugstack.wrench</groupId>
                 <artifactId>xfg-wrench-starter-design-framework</artifactId>
                 <version>${xfg-wrench-starter-design-framework.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-classic</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-core</artifactId>
-                    </exclusion>
-                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
