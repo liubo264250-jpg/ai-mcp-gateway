@@ -1,5 +1,6 @@
 package com.liubo.ai;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @Configurable
+@MapperScan(basePackages = "com.liubo.ai.infrastructure.dao.mapper")
 public class McpGatewayApplication {
     public static void main(String[] args){
         SpringApplication.run(McpGatewayApplication.class);
