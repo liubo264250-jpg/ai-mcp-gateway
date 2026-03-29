@@ -16,7 +16,7 @@ import java.util.Map;
 @Slf4j
 public class ToolsCallHandler implements IRequestHandler {
     @Override
-    public McpSchemaVO.JSONRPCResponse handler(McpSchemaVO.JSONRPCRequest message) {
+    public McpSchemaVO.JSONRPCResponse handler(String gatewayId,McpSchemaVO.JSONRPCRequest message) {
         Object id = message.id();
         Object params = message.params();
         if (!(params instanceof Map)) {

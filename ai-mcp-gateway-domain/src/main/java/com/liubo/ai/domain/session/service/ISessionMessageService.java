@@ -7,5 +7,5 @@ import com.liubo.ai.domain.session.model.valobj.McpSchemaVO;
  * 2026/3/27 09:3
  */
 public interface ISessionMessageService {
-    McpSchemaVO.JSONRPCResponse processHandlerMessage(McpSchemaVO.JSONRPCMessage message);
+    McpSchemaVO.JSONRPCResponse processHandlerMessage(String gatewayId,McpSchemaVO.JSONRPCMessage message);
 }

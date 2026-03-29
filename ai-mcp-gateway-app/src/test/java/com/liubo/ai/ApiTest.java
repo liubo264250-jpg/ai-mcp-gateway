@@ -36,14 +36,13 @@ public class ApiTest {
                                 .toolCallbacks(new SyncMcpToolCallbackProvider(sseMcpClient02()).getToolCallbacks())
                                 .build())
                 .build();
-        System.out.println(io.netty.resolver.dns.DnsServerAddressStreamProviders.platformDefault().getClass().getName());
-        log.info("测试结果:{}", chatClient.prompt("liubo小写转大写").call().content());
+        log.info("测试结果:{}", chatClient.prompt("有哪些工具可以使用").call().content());
     }
 
     public McpSyncClient sseMcpClient02() {
         HttpClientSseClientTransport sseClientTransport = HttpClientSseClientTransport
                 .builder("http://127.0.0.1:8777")
-                .sseEndpoint("/api-gateway/test10001/mcp/sse")
+                .sseEndpoint("/api-gateway/gateway_001/mcp/sse")
                 .build();
         McpSyncClient mcpSyncClient = McpClient.sync(sseClientTransport).requestTimeout(Duration.ofMinutes(36000)).build();
         var init_sse = mcpSyncClient.initialize();

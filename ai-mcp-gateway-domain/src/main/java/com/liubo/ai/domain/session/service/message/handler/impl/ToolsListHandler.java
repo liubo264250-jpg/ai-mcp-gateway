@@ -15,7 +15,7 @@ import java.util.Map;
 @Slf4j
 public class ToolsListHandler implements IRequestHandler {
     @Override
-    public McpSchemaVO.JSONRPCResponse handler(McpSchemaVO.JSONRPCRequest message) {
+    public McpSchemaVO.JSONRPCResponse handler(String gatewayId,McpSchemaVO.JSONRPCRequest message) {
         return new McpSchemaVO.JSONRPCResponse("2.0",
                 message.id(),
                 Map.of(

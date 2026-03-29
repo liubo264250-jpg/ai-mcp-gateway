@@ -26,7 +26,7 @@ public class SessionMessageService implements ISessionMessageService {
     private Map<String, IRequestHandler> requestHandlerMap;
 
     @Override
-    public McpSchemaVO.JSONRPCResponse processHandlerMessage(McpSchemaVO.JSONRPCMessage message) {
+    public McpSchemaVO.JSONRPCResponse processHandlerMessage(String gatewayId,McpSchemaVO.JSONRPCMessage message) {
         if (message instanceof McpSchemaVO.JSONRPCResponse response) {
             log.info("收到结果消息");
         }
@@ -38,7 +38,7 @@ public class SessionMessageService implements ISessionMessageService {
             if (handler == null) {
                 throw new AppException(METHOD_NOT_FOUND.getCode(), METHOD_NOT_FOUND.getInfo());
             }
-            return handler.handler(request);
+            return handler.handler(gatewayId,request);
         }
         if (message instanceof McpSchemaVO.JSONRPCNotification notification) {
             log.info("收到即将处理的通知 {} {}", notification.method(), JSON.toJSONString(notification.params()));

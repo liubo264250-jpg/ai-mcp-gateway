@@ -15,7 +15,7 @@ import java.util.Map;
 @Slf4j
 public class ResourcesListHandler implements IRequestHandler {
     @Override
-    public McpSchemaVO.JSONRPCResponse handler(McpSchemaVO.JSONRPCRequest request) {
+    public McpSchemaVO.JSONRPCResponse handler(String gatewayId,McpSchemaVO.JSONRPCRequest request) {
         return new McpSchemaVO.JSONRPCResponse("2.0",
                 request.id(),
                 Map.of("resources",Map.of("resources",new Object[]{})),

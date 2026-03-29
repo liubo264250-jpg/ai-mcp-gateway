@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 68
@@ -16,6 +17,10 @@ import java.util.HashMap;
  */
 @Slf4j
 public final class McpSchemaVO {
+
+    public static final String LATEST_PROTOCOL_VERSION = "2024-11-05";
+
+    public static final String JSONRPC_VERSION = "2.0";
 
     private static final TypeReference<HashMap<String, Object>> MAP_TYPE_REF = new TypeReference<>() {
     };
@@ -40,14 +45,27 @@ public final class McpSchemaVO {
         throw new IllegalArgumentException("Cannot deserialize JSONRPCMessage: " + jsonText);
     }
 
-    /**
-     * sealed:限制了接口的实现范围，增强类型安全
-     * permits:键字后面列出了允许实现该接口的具体类或接口(白名单)
-     */
-    public sealed interface JSONRPCMessage permits JSONRPCRequest, JSONRPCResponse, JSONRPCNotification {
-        String jsonrpc();
+    public static  <T> T unmarshalFrom(Object data, TypeReference<T> typeRef) {
+        return objectMapper.convertValue(data, typeRef);
     }
 
+    /**
+     * JSON-RPC 2.0 Message Types
+     */
+    public sealed interface JSONRPCMessage permits JSONRPCRequest, JSONRPCNotification, JSONRPCResponse {
+
+        String jsonrpc();
+
+    }
+
+    /**
+     * 请求对象
+     *
+     * @param jsonrpc 协议版本 2.0
+     * @param method  请求方法；initialize、tools/list、tools/call、resources/list
+     * @param id      请求ID
+     * @param params  请求参数
+     */
     @JsonInclude(JsonInclude.Include.NON_ABSENT)
     @JsonIgnoreProperties(ignoreUnknown = true)
     public record JSONRPCRequest(@JsonProperty("jsonrpc") String jsonrpc,
@@ -57,10 +75,21 @@ public final class McpSchemaVO {
     ) implements JSONRPCMessage {
     }
 
+    @JsonInclude(JsonInclude.Include.NON_ABSENT)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record JSONRPCNotification(
+            @JsonProperty("jsonrpc") String jsonrpc,
+            @JsonProperty("method") String method,
+            @JsonProperty("params") Object params) implements JSONRPCMessage {
+    }
+
     /**
-     * @JsonInclude 过滤器 “没用的（空值）不要发。”
-     * @JsonIgnoreProperties 防护盾 “不认识的（新字段）不要报错。”
-     * @JsonProperty 翻译官 “把我的 Java 名字映射到协议名字上。”
+     * 响应对象
+     *
+     * @param jsonrpc 协议版本 2.0
+     * @param id      请求ID
+     * @param result  响应结果
+     * @param error   异常结果
      */
     @JsonInclude(JsonInclude.Include.NON_ABSENT)
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -79,11 +108,185 @@ public final class McpSchemaVO {
         }
     }
 
+    public sealed interface Request
+            permits InitializeRequest {
+
+    }
+
+    // ---------------------------
+    // Initialization
+    // ---------------------------
     @JsonInclude(JsonInclude.Include.NON_ABSENT)
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public record JSONRPCNotification(
-            @JsonProperty("jsonrpc") String jsonrpc,
-            @JsonProperty("method") String method,
-            @JsonProperty("params") Object params) implements JSONRPCMessage {
+    public record InitializeRequest( // @formatter:off
+                                     @JsonProperty("protocolVersion") String protocolVersion,
+                                     @JsonProperty("capabilities") ClientCapabilities capabilities,
+                                     @JsonProperty("clientInfo") Implementation clientInfo) implements Request {
+    } // @formatter:on
+
+    @JsonInclude(JsonInclude.Include.NON_ABSENT)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record InitializeResult( // @formatter:off
+                                    @JsonProperty("protocolVersion") String protocolVersion,
+                                    @JsonProperty("capabilities") ServerCapabilities capabilities,
+                                    @JsonProperty("serverInfo") Implementation serverInfo,
+                                    @JsonProperty("instructions") String instructions) {
     }
+
+    @JsonInclude(JsonInclude.Include.NON_ABSENT)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record ClientCapabilities( // @formatter:off
+                                      @JsonProperty("experimental") Map<String, Object> experimental,
+                                      @JsonProperty("roots") RootCapabilities roots,
+                                      @JsonProperty("sampling") Sampling sampling) {
+
+        /**
+         * Roots define the boundaries of where servers can operate within the filesystem,
+         * allowing them to understand which directories and files they have access to.
+         * Servers can request the list of roots from supporting clients and
+         * receive notifications when that list changes.
+         *
+         * @param listChanged Whether the client would send notification about roots
+         * 		  has changed since the last time the server checked.
+         */
+        @JsonInclude(JsonInclude.Include.NON_ABSENT)
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public record RootCapabilities(
+                @JsonProperty("listChanged") Boolean listChanged) {
+        }
+
+        /**
+         * Provides a standardized way for servers to request LLM
+         * sampling ("completions" or "generations") from language
+         * models via clients. This flow allows clients to maintain
+         * control over model access, selection, and permissions
+         * while enabling servers to leverage AI capabilities—with
+         * no server API keys necessary. Servers can request text or
+         * image-based interactions and optionally include context
+         * from MCP servers in their prompts.
+         */
+        @JsonInclude(JsonInclude.Include.NON_ABSENT)
+        public record Sampling() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public static class Builder {
+            private Map<String, Object> experimental;
+            private RootCapabilities roots;
+            private Sampling sampling;
+
+            public Builder experimental(Map<String, Object> experimental) {
+                this.experimental = experimental;
+                return this;
+            }
+
+            public Builder roots(Boolean listChanged) {
+                this.roots = new RootCapabilities(listChanged);
+                return this;
+            }
+
+            public Builder sampling() {
+                this.sampling = new Sampling();
+                return this;
+            }
+
+            public ClientCapabilities build() {
+                return new ClientCapabilities(experimental, roots, sampling);
+            }
+        }
+    }// @formatter:on
+
+    @JsonInclude(JsonInclude.Include.NON_ABSENT)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record ServerCapabilities( // @formatter:off
+                                      @JsonProperty("completions") CompletionCapabilities completions,
+                                      @JsonProperty("experimental") Map<String, Object> experimental,
+                                      @JsonProperty("logging") LoggingCapabilities logging,
+                                      @JsonProperty("prompts") PromptCapabilities prompts,
+                                      @JsonProperty("resources") ResourceCapabilities resources,
+                                      @JsonProperty("tools") ToolCapabilities tools) {
+
+        @JsonInclude(JsonInclude.Include.NON_ABSENT)
+        public record CompletionCapabilities() {
+        }
+
+        @JsonInclude(JsonInclude.Include.NON_ABSENT)
+        public record LoggingCapabilities() {
+        }
+
+        @JsonInclude(JsonInclude.Include.NON_ABSENT)
+        public record PromptCapabilities(
+                @JsonProperty("listChanged") Boolean listChanged) {
+        }
+
+        @JsonInclude(JsonInclude.Include.NON_ABSENT)
+        public record ResourceCapabilities(
+                @JsonProperty("subscribe") Boolean subscribe,
+                @JsonProperty("listChanged") Boolean listChanged) {
+        }
+
+        @JsonInclude(JsonInclude.Include.NON_ABSENT)
+        public record ToolCapabilities(
+                @JsonProperty("listChanged") Boolean listChanged) {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public static class Builder {
+
+            private CompletionCapabilities completions;
+            private Map<String, Object> experimental;
+            private LoggingCapabilities logging = new LoggingCapabilities();
+            private PromptCapabilities prompts;
+            private ResourceCapabilities resources;
+            private ToolCapabilities tools;
+
+            public Builder completions() {
+                this.completions = new CompletionCapabilities();
+                return this;
+            }
+
+            public Builder experimental(Map<String, Object> experimental) {
+                this.experimental = experimental;
+                return this;
+            }
+
+            public Builder logging() {
+                this.logging = new LoggingCapabilities();
+                return this;
+            }
+
+            public Builder prompts(Boolean listChanged) {
+                this.prompts = new PromptCapabilities(listChanged);
+                return this;
+            }
+
+            public Builder resources(Boolean subscribe, Boolean listChanged) {
+                this.resources = new ResourceCapabilities(subscribe, listChanged);
+                return this;
+            }
+
+            public Builder tools(Boolean listChanged) {
+                this.tools = new ToolCapabilities(listChanged);
+                return this;
+            }
+
+            public ServerCapabilities build() {
+                return new ServerCapabilities(completions, experimental, logging, prompts, resources, tools);
+            }
+        }
+    } // @formatter:on
+
+    @JsonInclude(JsonInclude.Include.NON_ABSENT)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public record Implementation(// @formatter:off
+                                 @JsonProperty("name") String name,
+                                 @JsonProperty("version") String version) {
+    } // @formatter:on
 }
+

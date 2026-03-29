@@ -71,7 +71,7 @@ public class McpGatewayController implements IMcpGatewayService {
                 return Mono.just(ResponseEntity.notFound().build());
             }
             McpSchemaVO.JSONRPCMessage rpcMessage = McpSchemaVO.deserializeJsonRpcMessage(messageBody);
-            McpSchemaVO.JSONRPCResponse jsonrpcResponse = serviceMessageService.processHandlerMessage(rpcMessage);
+            McpSchemaVO.JSONRPCResponse jsonrpcResponse = serviceMessageService.processHandlerMessage(gatewayId,rpcMessage);
             log.info("调用结果:{}", JSON.toJSONString(jsonrpcResponse));
             if (null != jsonrpcResponse) {
                 String responseJson = objectMapper.writeValueAsString(jsonrpcResponse);
