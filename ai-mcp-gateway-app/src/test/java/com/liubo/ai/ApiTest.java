@@ -1,5 +1,8 @@
 package com.liubo.ai;
 
+import com.alibaba.fastjson.JSON;
+import com.liubo.ai.domain.session.model.valobj.McpSchemaVO;
+import com.liubo.ai.domain.session.service.message.handler.impl.ToolsListHandler;
 import io.modelcontextprotocol.client.McpClient;
 import io.modelcontextprotocol.client.McpSyncClient;
 import io.modelcontextprotocol.client.transport.HttpClientSseClientTransport;
@@ -27,6 +30,9 @@ public class ApiTest {
     @Resource
     private ChatClient.Builder chatClientBuilder;
 
+    @Resource
+    private ToolsListHandler toolsListHandler;
+
 
     @Test
     public void test() {
@@ -49,5 +55,13 @@ public class ApiTest {
         log.info("Tool SSE MCP02 Initialized {}", init_sse);
 
         return mcpSyncClient;
+    }
+
+    @Test
+    public void test_handle() {
+        McpSchemaVO.JSONRPCResponse handle = toolsListHandler.
+                handler("gateway_001",
+                        new McpSchemaVO.JSONRPCRequest("2.0","tool/list","a355a5f7-0",""));
+        log.info("测试结果:{}", JSON.toJSONString(handle.result()));
     }
 }
