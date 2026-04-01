@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.liubo.ai.domain.session.adapter.repository.ISessionRepository;
 import com.liubo.ai.domain.session.model.valobj.gateway.McpGatewayConfigVO;
+import com.liubo.ai.domain.session.model.valobj.gateway.McpGatewayProtocolConfigVO;
 import com.liubo.ai.domain.session.model.valobj.gateway.McpGatewayToolConfigVO;
 import com.liubo.ai.infrastructure.dao.po.McpGateway;
 import com.liubo.ai.infrastructure.dao.po.McpProtocolMapping;
@@ -84,5 +85,22 @@ public class SessionRepository implements ISessionRepository {
                 .httpLocation(mcpProtocolMapping.getHttpLocation())
                 .sortOrder(mcpProtocolMapping.getSortOrder())
                 .build()).collect(Collectors.toList());
+    }
+
+    @Override
+    public McpGatewayProtocolConfigVO queryMcpGatewayProtocolConfig(String gatewayId) {
+        if (StrUtil.isBlank(gatewayId)) return null;
+        McpProtocolRegistry mcpProtocolRegistry = mcpProtocolRegistryService.getOne(Wrappers.<McpProtocolRegistry>lambdaQuery()
+                .eq(McpProtocolRegistry::getGatewayId, gatewayId)
+                .eq(McpProtocolRegistry::getStatus, CommonConstant.ENABLE));
+        if (null == mcpProtocolRegistry) return null;
+
+        McpGatewayProtocolConfigVO.HTTPConfig httpConfig = McpGatewayProtocolConfigVO.HTTPConfig.builder()
+                .httpUrl(mcpProtocolRegistry.getHttpUrl())
+                .httpHeaders(mcpProtocolRegistry.getHttpHeaders())
+                .timeout(mcpProtocolRegistry.getTimeout())
+                .httpMethod(mcpProtocolRegistry.getHttpMethod())
+                .build();
+        return McpGatewayProtocolConfigVO.builder().httpConfig(httpConfig).build();
     }
 }
