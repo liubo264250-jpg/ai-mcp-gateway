@@ -21,10 +21,10 @@ import javax.annotation.Resource;
 public class DefaultMcpSessionFactory {
 
     @Resource
-    private RootNode rootNode;
+    private RootNode mcpSessionRootNode;
 
     public StrategyHandler<String, DynamicContext, Flux<ServerSentEvent<String>>> strategyHandler() {
-        return rootNode;
+        return mcpSessionRootNode;
     }
 
 

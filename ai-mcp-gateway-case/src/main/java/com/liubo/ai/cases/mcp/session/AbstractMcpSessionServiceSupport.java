@@ -14,7 +14,7 @@ import java.util.concurrent.TimeoutException;
  * @author 68
  * 2026/3/24 09:45
  */
-public abstract class AbstractMcpSessionSupport extends AbstractMultiThreadStrategyRouter<String, DefaultMcpSessionFactory.DynamicContext, Flux<ServerSentEvent<String>>> {
+public abstract class AbstractMcpSessionServiceSupport extends AbstractMultiThreadStrategyRouter<String, DefaultMcpSessionFactory.DynamicContext, Flux<ServerSentEvent<String>>> {
 
     @Resource
     protected ISessionManagementService sessionManagementService;

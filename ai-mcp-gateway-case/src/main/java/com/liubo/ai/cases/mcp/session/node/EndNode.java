@@ -1,7 +1,7 @@
 package com.liubo.ai.cases.mcp.session.node;
 
 import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
-import com.liubo.ai.cases.mcp.session.AbstractMcpSessionSupport;
+import com.liubo.ai.cases.mcp.session.AbstractMcpSessionServiceSupport;
 import com.liubo.ai.cases.mcp.session.factory.DefaultMcpSessionFactory;
 import com.liubo.ai.domain.session.model.valobj.SessionConfigVO;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +16,9 @@ import java.time.Duration;
  * @author 68
  * 2026/3/24 08:28
  */
-@Service
+@Service("mcpSessionEndNode")
 @Slf4j
-public class EndNode extends AbstractMcpSessionSupport {
+public class EndNode extends AbstractMcpSessionServiceSupport {
 
     @Override
     protected Flux<ServerSentEvent<String>> doApply(String gatewayId, DefaultMcpSessionFactory.DynamicContext dynamicContext) throws Exception {
