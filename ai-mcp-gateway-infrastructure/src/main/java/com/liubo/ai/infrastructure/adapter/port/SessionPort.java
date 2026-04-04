@@ -3,7 +3,7 @@ package com.liubo.ai.infrastructure.adapter.port;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liubo.ai.domain.session.adapter.port.ISessionPort;
-import com.liubo.ai.domain.session.model.valobj.gateway.McpGatewayProtocolConfigVO;
+import com.liubo.ai.domain.session.model.valobj.gateway.McpToolProtocolConfigVO;
 import com.liubo.ai.infrastructure.gateway.GenericHttpGateway;
 import com.liubo.ai.types.enums.ResponseCode;
 import com.liubo.ai.types.execption.AppException;
@@ -32,7 +32,7 @@ public class SessionPort implements ISessionPort {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public Object toolCall(McpGatewayProtocolConfigVO.HTTPConfig httpConfig, Object params) throws IOException {
+    public Object toolCall(McpToolProtocolConfigVO.HTTPConfig httpConfig, Object params) throws IOException {
         String httpHeadersJson = httpConfig.getHttpHeaders();
         Map<String, Object> headers = objectMapper.readValue(httpHeadersJson, Map.class);
         String httpMethod = httpConfig.getHttpMethod().toLowerCase();

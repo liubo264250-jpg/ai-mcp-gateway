@@ -1,6 +1,6 @@
 package com.liubo.ai.domain.session.adapter.port;
 
-import com.liubo.ai.domain.session.model.valobj.gateway.McpGatewayProtocolConfigVO;
+import com.liubo.ai.domain.session.model.valobj.gateway.McpToolProtocolConfigVO;
 
 import java.io.IOException;
 
@@ -9,5 +9,5 @@ import java.io.IOException;
  * 2026/3/31 08:38
  */
 public interface ISessionPort {
-    Object toolCall(McpGatewayProtocolConfigVO.HTTPConfig httpConfig, Object params) throws IOException;
+    Object toolCall(McpToolProtocolConfigVO.HTTPConfig httpConfig, Object params) throws IOException;
 }

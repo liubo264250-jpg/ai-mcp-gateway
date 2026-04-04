@@ -4,17 +4,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.util.Date;
 import lombok.Data;
 
-import java.util.Date;
-
 /**
- * MCP工具注册表
- * @TableName mcp_protocol_registry
+ * HTTP工具注册表
+ * @TableName mcp_protocol_http
  */
-@TableName(value ="mcp_protocol_registry")
+@TableName(value ="mcp_protocol_http")
 @Data
-public class McpProtocolRegistry {
+public class McpProtocolHttp {
     /**
      * 主键ID
      */
@@ -22,40 +21,10 @@ public class McpProtocolRegistry {
     private Long id;
 
     /**
-     * 所属网关ID
+     * 协议id
      */
-    @TableField(value = "gateway_id")
-    private String gatewayId;
-
-    /**
-     * 工具ID
-     */
-    @TableField(value = "tool_id")
-    private Long toolId;
-
-    /**
-     * MCP工具名称（如：JavaSDKMCPClient_getCompanyEmployee）
-     */
-    @TableField(value = "tool_name")
-    private String toolName;
-
-    /**
-     * 工具类型：function/resource
-     */
-    @TableField(value = "tool_type")
-    private String toolType;
-
-    /**
-     * 工具描述
-     */
-    @TableField(value = "tool_description")
-    private String toolDescription;
-
-    /**
-     * 工具版本
-     */
-    @TableField(value = "tool_version")
-    private String toolVersion;
+    @TableField(value = "protocol_id")
+    private Long protocolId;
 
     /**
      * HTTP接口地址

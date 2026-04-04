@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liubo.ai.infrastructure.dao.mapper.McpGatewayToolMapper">
+
+    <resultMap id="BaseResultMap" type="com.liubo.ai.infrastructure.dao.po.McpGatewayTool">
+            <id property="id" column="id" />
+            <result property="gatewayId" column="gateway_id" />
+            <result property="toolId" column="tool_id" />
+            <result property="toolName" column="tool_name" />
+            <result property="toolType" column="tool_type" />
+            <result property="toolDescription" column="tool_description" />
+            <result property="toolVersion" column="tool_version" />
+            <result property="protocolId" column="protocol_id" />
+            <result property="protocolType" column="protocol_type" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,gateway_id,tool_id,tool_name,tool_type,tool_description,
+        tool_version,protocol_id,protocol_type,create_time,update_time
+    </sql>
+</mapper>

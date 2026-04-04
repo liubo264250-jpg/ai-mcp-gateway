@@ -4,8 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * MCP网关配置表
@@ -37,6 +38,12 @@ public class McpGateway {
      */
     @TableField(value = "gateway_desc")
     private String gatewayDesc;
+
+    /**
+     * 版本
+     */
+    @TableField(value = "version")
+    private String version;
 
     /**
      * 状态：0-禁用，1-启用

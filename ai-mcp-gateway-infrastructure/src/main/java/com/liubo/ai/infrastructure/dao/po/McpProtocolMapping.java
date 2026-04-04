@@ -21,16 +21,10 @@ public class McpProtocolMapping {
     private Long id;
 
     /**
-     * 所属网关ID
+     * 协议id
      */
-    @TableField(value = "gateway_id")
-    private String gatewayId;
-
-    /**
-     * 所属工具ID
-     */
-    @TableField(value = "tool_id")
-    private Long toolId;
+    @TableField(value = "protocol_id")
+    private Long protocolId;
 
     /**
      * 映射类型：request-请求参数映射，response-响应数据映射
@@ -73,18 +67,6 @@ public class McpProtocolMapping {
      */
     @TableField(value = "is_required")
     private Integer isRequired;
-
-    /**
-     * HTTP路径（JSON路径，如：company.name 或 data.result，object类型可为空）
-     */
-    @TableField(value = "http_path")
-    private String httpPath;
-
-    /**
-     * HTTP位置：body/query/path/header（仅对request类型有效）
-     */
-    @TableField(value = "http_location")
-    private String httpLocation;
 
     /**
      * 排序顺序（同级字段排序）

@@ -6,8 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.liubo.ai.infrastructure.dao.po.McpProtocolMapping">
             <id property="id" column="id" />
-            <result property="gatewayId" column="gateway_id" />
-            <result property="toolId" column="tool_id" />
+            <result property="protocolId" column="protocol_id" />
             <result property="mappingType" column="mapping_type" />
             <result property="parentPath" column="parent_path" />
             <result property="fieldName" column="field_name" />
@@ -15,16 +14,14 @@
             <result property="mcpType" column="mcp_type" />
             <result property="mcpDesc" column="mcp_desc" />
             <result property="isRequired" column="is_required" />
-            <result property="httpPath" column="http_path" />
-            <result property="httpLocation" column="http_location" />
             <result property="sortOrder" column="sort_order" />
             <result property="createTime" column="create_time" />
             <result property="updateTime" column="update_time" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,gateway_id,tool_id,mapping_type,parent_path,field_name,
-        mcp_path,mcp_type,mcp_desc,is_required,http_path,
-        http_location,sort_order,create_time,update_time
+        id,protocol_id,mapping_type,parent_path,field_name,mcp_path,
+        mcp_type,mcp_desc,is_required,sort_order,create_time,
+        update_time
     </sql>
 </mapper>

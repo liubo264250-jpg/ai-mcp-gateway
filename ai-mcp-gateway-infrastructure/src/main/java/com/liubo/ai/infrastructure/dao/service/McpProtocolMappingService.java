@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 /**
 * @author liubo
 * @description 针对表【mcp_protocol_mapping(MCP映射配置表)】的数据库操作Service
-* @createDate 2026-03-28 22:09:14
+* @createDate 2026-04-03 22:55:01
 */
 public interface McpProtocolMappingService extends IService<McpProtocolMapping> {
 

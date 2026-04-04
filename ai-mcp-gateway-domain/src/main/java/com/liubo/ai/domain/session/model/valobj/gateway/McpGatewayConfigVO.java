@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class McpGatewayConfigVO {
     /**
-     * 网关唯一标识
+     * 网关ID
      */
     private String gatewayId;
 
@@ -25,22 +25,13 @@ public class McpGatewayConfigVO {
     private String gatewayName;
 
     /**
-     * 工具ID
+     * 网关描述
      */
-    private Long toolId;
+    private String gatewayDesc;
 
     /**
-     * MCP工具名称（如：JavaSDKMCPClient_getCompanyEmployee）
+     * 协议版本
      */
-    private String toolName;
+    private String version;
 
-    /**
-     * 工具描述
-     */
-    private String toolDescription;
-
-    /**
-     * 工具版本
-     */
-    private String toolVersion;
 }
