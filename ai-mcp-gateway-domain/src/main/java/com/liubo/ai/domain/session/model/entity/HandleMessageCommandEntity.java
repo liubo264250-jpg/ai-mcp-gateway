@@ -15,6 +15,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HandleMessageCommandEntity {
+
+    private String apiKey;
+
     private String gatewayId;
 
     private String sessionId;

@@ -33,7 +33,7 @@ public class ISessionManagementServiceImpl implements ISessionManagementService 
     private final Map<String, SessionConfigVO> activeSessions = new ConcurrentHashMap<>();
 
     @Override
-    public SessionConfigVO createSession(String gatewayId) {
+    public SessionConfigVO createSession(String gatewayId, String apiKey) {
         String sessionId = UUID.randomUUID().toString();
 
         Sinks.Many<ServerSentEvent<String>> sink = Sinks.many()
@@ -42,6 +42,9 @@ public class ISessionManagementServiceImpl implements ISessionManagementService 
         SessionConfigVO sessionConfigVO = new SessionConfigVO(sessionId, sink);
         // 发送消息
         String messageEndpoint = "/api-gateway/" + gatewayId + "/mcp/sse?sessionId=" + sessionId;
+        if (StrUtil.isNotBlank(apiKey)){
+            messageEndpoint += "&api_key=" + apiKey;
+        }
         sink.tryEmitNext(ServerSentEvent.<String>builder()
                 .event("endpoint")
                 .data(messageEndpoint)

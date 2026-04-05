@@ -10,11 +10,22 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AppException extends RuntimeException {
-    /** 异常码 */
+    private static final long serialVersionUID = 5317680961212299217L;
+
+    /**
+     * 异常码
+     */
     private String code;
 
-    /** 异常信息 */
+    /**
+     * 异常信息
+     */
     private String info;
+
+    public AppException(Integer code, String message) {
+        this.code = String.valueOf(code);
+        this.info = message;
+    }
 
     public AppException(String code) {
         this.code = code;
@@ -35,4 +46,5 @@ public class AppException extends RuntimeException {
         this.info = message;
         super.initCause(cause);
     }
+
 }

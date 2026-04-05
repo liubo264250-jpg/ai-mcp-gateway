@@ -7,7 +7,7 @@ import com.liubo.ai.domain.session.model.valobj.session.SessionConfigVO;
  * 2026/3/23 08:35
  */
 public interface ISessionManagementService {
-    SessionConfigVO createSession(String gatewayId);
+    SessionConfigVO createSession(String gatewayId, String apiKey);
 
     SessionConfigVO getSession(String sessionId);
 

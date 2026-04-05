@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 public class SessionNode extends AbstractMcpMessageServiceSupport {
 
     @Resource
-    private MessageHandlerNode mcpMessageMessageHandlerNode;
+    private VerifyNode mcpMessageVerifyNode;
 
     @Resource
     private ISessionManagementService sessionManagementService;
@@ -36,11 +36,12 @@ public class SessionNode extends AbstractMcpMessageServiceSupport {
             return ResponseEntity.notFound().build();
         }
         dynamicContext.setSessionConfigVO(session);
+        dynamicContext.setApiKey(requestParameter.getApiKey());
         return router(requestParameter,dynamicContext);
     }
 
     @Override
     public StrategyHandler<HandleMessageCommandEntity, DefaultMcpMessageFactory.DynamicContext, ResponseEntity<Void>> get(HandleMessageCommandEntity requestParameter, DefaultMcpMessageFactory.DynamicContext dynamicContext) throws Exception {
-        return mcpMessageMessageHandlerNode;
+        return mcpMessageVerifyNode;
     }
 }

@@ -34,14 +34,15 @@ public class McpGatewayController implements IMcpGatewayService {
 
     @GetMapping(value = "{gatewayId}/mcp/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @Override
-    public Flux<ServerSentEvent<String>> establishSSEConnection(@PathVariable("gatewayId") String gatewayId) throws Exception {
+    public Flux<ServerSentEvent<String>> establishSSEConnection(@PathVariable("gatewayId") String gatewayId,
+                                                                @RequestParam("api_key") String apiKey) throws Exception {
         try {
             log.info("建立 MCP SSE 连接，gatewayId:{}", gatewayId);
             if (StrUtil.isBlank(gatewayId)) {
                 log.info("非法参数，gateway is null");
                 throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
             }
-            return mcpSessionService.createMcpSession(gatewayId);
+            return mcpSessionService.createMcpSession(gatewayId, apiKey);
         } catch (Exception e) {
             log.error("建立 MCP SSE 连接失败，gatewayId: {}", gatewayId, e);
             throw e;
@@ -51,8 +52,9 @@ public class McpGatewayController implements IMcpGatewayService {
     @PostMapping(value = "{gatewayId}/mcp/sse", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Mono<ResponseEntity<Void>> handleMessage(@PathVariable("gatewayId") String gatewayId,
-                                                      @RequestParam("sessionId") String sessionId,
-                                                      @RequestBody String messageBody) {
+                                                    @RequestParam("sessionId") String sessionId,
+                                                    @RequestParam("api_key") String apiKey,
+                                                    @RequestBody String messageBody) {
         try {
             log.info("处理 MCP SSE 消息，gatewayId:{} sessionId:{} messageBody:{}", gatewayId, sessionId, messageBody);
             if (StrUtil.isBlank(gatewayId) || StrUtil.isBlank(sessionId)) {

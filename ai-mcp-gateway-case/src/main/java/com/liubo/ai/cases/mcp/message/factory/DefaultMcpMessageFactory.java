@@ -33,6 +33,7 @@ public class DefaultMcpMessageFactory {
     @AllArgsConstructor
     @Builder
     public static class DynamicContext {
+        private String apiKey;
         private SessionConfigVO sessionConfigVO;
     }
 }
