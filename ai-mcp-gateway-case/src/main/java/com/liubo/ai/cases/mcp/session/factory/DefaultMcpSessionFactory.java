@@ -2,7 +2,7 @@ package com.liubo.ai.cases.mcp.session.factory;
 
 import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
 import com.liubo.ai.cases.mcp.session.node.RootNode;
-import com.liubo.ai.domain.session.model.valobj.SessionConfigVO;
+import com.liubo.ai.domain.session.model.valobj.session.SessionConfigVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

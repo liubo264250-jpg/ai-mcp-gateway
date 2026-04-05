@@ -12,11 +12,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public enum ResponseCode {
+
     SUCCESS("0000", "成功"),
     UN_ERROR("0001", "未知失败"),
     ILLEGAL_PARAMETER("0002", "非法参数"),
-    METHOD_NOT_FOUND("0003", "方法未找到"),
-    CONFIG_NOT_EXIST("0004", "配置不存在"),
+    METHOD_NOT_FOUND("0003", "未找到方法"),
+    ENUM_NOT_FOUND("0004", "未找到枚举"),
+    CONFIG_NOT_EXIST("0005", "配置不存在"),
+    AUTH_ERROR_EXPIRE_TIME("1001", "网关服务认证过期"),
+    AUTH_ERROR_RATE_LIMIT("1002", "网关请求速率限制"),
     ;
     private String code;
     private String info;

@@ -1,6 +1,6 @@
 package com.liubo.ai.domain.session.service;
 
-import com.liubo.ai.domain.session.model.valobj.SessionConfigVO;
+import com.liubo.ai.domain.session.model.valobj.session.SessionConfigVO;
 
 /**
  * @author 68

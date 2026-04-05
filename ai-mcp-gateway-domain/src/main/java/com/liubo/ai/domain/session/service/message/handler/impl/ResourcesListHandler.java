@@ -1,6 +1,6 @@
 package com.liubo.ai.domain.session.service.message.handler.impl;
 
-import com.liubo.ai.domain.session.model.valobj.McpSchemaVO;
+import com.liubo.ai.domain.session.model.valobj.session.McpSchemaVO;
 import com.liubo.ai.domain.session.service.message.handler.IRequestHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

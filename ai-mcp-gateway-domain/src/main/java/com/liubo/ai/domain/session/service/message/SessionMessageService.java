@@ -1,7 +1,7 @@
 package com.liubo.ai.domain.session.service.message;
 
 import com.alibaba.fastjson.JSON;
-import com.liubo.ai.domain.session.model.valobj.McpSchemaVO;
+import com.liubo.ai.domain.session.model.valobj.session.McpSchemaVO;
 import com.liubo.ai.domain.session.service.ISessionMessageService;
 import com.liubo.ai.domain.session.service.message.handler.IRequestHandler;
 import com.liubo.ai.types.enums.SessionMessageHandlerMethodEnum;

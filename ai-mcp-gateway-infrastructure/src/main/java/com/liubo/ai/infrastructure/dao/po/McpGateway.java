@@ -52,6 +52,12 @@ public class McpGateway {
     private Integer status;
 
     /**
+     * 状态：0-不校验，1-强校验
+     */
+    @TableField(value = "auth")
+    private Integer auth;
+
+    /**
      * 创建时间
      */
     @TableField(value = "create_time")

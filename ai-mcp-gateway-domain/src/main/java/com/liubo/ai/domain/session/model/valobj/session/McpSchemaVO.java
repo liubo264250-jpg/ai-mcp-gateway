@@ -1,4 +1,4 @@
-package com.liubo.ai.domain.session.model.valobj;
+package com.liubo.ai.domain.session.model.valobj.session;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

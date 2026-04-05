@@ -1,6 +1,6 @@
 package com.liubo.ai.domain.session.model.entity;
 
-import com.liubo.ai.domain.session.model.valobj.McpSchemaVO;
+import com.liubo.ai.domain.session.model.valobj.session.McpSchemaVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

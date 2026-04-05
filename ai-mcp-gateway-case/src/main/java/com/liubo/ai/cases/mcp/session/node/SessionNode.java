@@ -3,7 +3,7 @@ package com.liubo.ai.cases.mcp.session.node;
 import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
 import com.liubo.ai.cases.mcp.session.AbstractMcpSessionServiceSupport;
 import com.liubo.ai.cases.mcp.session.factory.DefaultMcpSessionFactory;
-import com.liubo.ai.domain.session.model.valobj.SessionConfigVO;
+import com.liubo.ai.domain.session.model.valobj.session.SessionConfigVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.stereotype.Service;

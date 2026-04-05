@@ -1,7 +1,7 @@
 package com.liubo.ai.domain.session.service.management;
 
 import cn.hutool.core.util.StrUtil;
-import com.liubo.ai.domain.session.model.valobj.SessionConfigVO;
+import com.liubo.ai.domain.session.model.valobj.session.SessionConfigVO;
 import com.liubo.ai.domain.session.service.ISessionManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.codec.ServerSentEvent;

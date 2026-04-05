@@ -4,7 +4,7 @@ import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
 import com.liubo.ai.cases.mcp.message.AbstractMcpMessageServiceSupport;
 import com.liubo.ai.cases.mcp.message.factory.DefaultMcpMessageFactory;
 import com.liubo.ai.domain.session.model.entity.HandleMessageCommandEntity;
-import com.liubo.ai.domain.session.model.valobj.SessionConfigVO;
+import com.liubo.ai.domain.session.model.valobj.session.SessionConfigVO;
 import com.liubo.ai.domain.session.service.ISessionManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

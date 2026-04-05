@@ -1,7 +1,7 @@
 package com.liubo.ai;
 
 import com.alibaba.fastjson.JSON;
-import com.liubo.ai.domain.session.model.valobj.McpSchemaVO;
+import com.liubo.ai.domain.session.model.valobj.session.McpSchemaVO;
 import com.liubo.ai.domain.session.service.message.handler.impl.ToolsListHandler;
 import io.modelcontextprotocol.client.McpClient;
 import io.modelcontextprotocol.client.McpSyncClient;

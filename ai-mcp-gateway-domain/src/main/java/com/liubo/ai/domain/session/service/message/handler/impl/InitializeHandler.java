@@ -3,7 +3,7 @@ package com.liubo.ai.domain.session.service.message.handler.impl;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.liubo.ai.domain.session.adapter.repository.ISessionRepository;
-import com.liubo.ai.domain.session.model.valobj.McpSchemaVO;
+import com.liubo.ai.domain.session.model.valobj.session.McpSchemaVO;
 import com.liubo.ai.domain.session.model.valobj.gateway.McpGatewayConfigVO;
 import com.liubo.ai.domain.session.service.message.handler.IRequestHandler;
 import com.liubo.ai.types.execption.AppException;

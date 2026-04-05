@@ -1,4 +1,4 @@
-package com.liubo.ai.domain.session.model.valobj;
+package com.liubo.ai.domain.session.model.valobj.session;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
