@@ -19,6 +19,7 @@ public enum ResponseCode {
     METHOD_NOT_FOUND("0003", "未找到方法"),
     ENUM_NOT_FOUND("0004", "未找到枚举"),
     CONFIG_NOT_EXIST("0005", "配置不存在"),
+    DB_UPDATE_FAIL("0006", "数据库更新失败"),
     AUTH_ERROR_EXPIRE_TIME("1001", "网关服务认证过期"),
     AUTH_ERROR_RATE_LIMIT("1002", "网关请求速率限制"),
     ;
