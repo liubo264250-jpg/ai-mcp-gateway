@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HTTPProtocolVO {
+    private Long protocolId;
     private String httpUrl;
     private String httpHeaders;
     private String httpMethod;
