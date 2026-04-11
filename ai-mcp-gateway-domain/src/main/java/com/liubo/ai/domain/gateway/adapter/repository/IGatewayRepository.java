@@ -12,4 +12,6 @@ public interface IGatewayRepository {
     void updateGatewayAuthStatus(GatewayConfigCommandEntity commandEntity);
     void saveGatewayToolConfig(GatewayToolConfigCommandEntity commandEntity);
     void updateGatewayToolProtocol(GatewayToolConfigCommandEntity commandEntity);
+
+    void deleteGatewayToolConfig(Long toolId);
 }

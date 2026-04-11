@@ -9,10 +9,13 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author 68
- * 2026/4/6 19:46
+ * 网关配置请求对象
+ *
+ * @author xiaofuge bugstack.cn @小傅哥
+ * 2026/3/24 08:04
  */
 public class GatewayConfigRequestDTO {
+
     @Data
     @Builder
     @AllArgsConstructor
@@ -30,6 +33,15 @@ public class GatewayConfigRequestDTO {
         private Integer auth;
         /** 网关状态：0-不校验，1-强校验 */
         private Integer status;
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class GatewayProtocolImport {
+        private String openApiJson;
+        private List<String> endpoints;
     }
 
     @Data
@@ -112,4 +124,5 @@ public class GatewayConfigRequestDTO {
         /** 过期时间 */
         private Date expireTime;
     }
+
 }

@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface IProtocolStorage {
     List<Long> doStorage(StorageCommandEntity commandEntity);
+
+    void deleteGatewayProtocol(Long protocolId);
 }

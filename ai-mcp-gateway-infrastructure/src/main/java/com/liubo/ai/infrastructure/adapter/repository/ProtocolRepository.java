@@ -1,6 +1,7 @@
 package com.liubo.ai.infrastructure.adapter.repository;
 
 import cn.hutool.core.util.RandomUtil;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.liubo.ai.domain.protocol.adapter.repository.IProtocolRepository;
 import com.liubo.ai.domain.protocol.model.valobj.HTTPProtocolVO;
 import com.liubo.ai.infrastructure.dao.po.McpProtocolHttp;
@@ -71,5 +72,12 @@ public class ProtocolRepository implements IProtocolRepository {
         }
 
         return protocolIdList;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void deleteGatewayProtocol(Long protocolId) {
+        mcpProtocolHttpService.remove(Wrappers.<McpProtocolHttp>lambdaQuery().eq(McpProtocolHttp::getProtocolId, protocolId));
+        mcpProtocolMappingService.remove(Wrappers.<McpProtocolMapping>lambdaQuery().eq(McpProtocolMapping::getProtocolId, protocolId));
     }
 }

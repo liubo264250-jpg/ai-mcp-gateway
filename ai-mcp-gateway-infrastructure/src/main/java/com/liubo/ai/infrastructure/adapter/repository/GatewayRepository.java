@@ -85,4 +85,9 @@ public class GatewayRepository implements IGatewayRepository {
             throw new AppException(ResponseCode.UN_ERROR.getCode(), ResponseCode.UN_ERROR.getInfo());
         }
     }
+
+    @Override
+    public void deleteGatewayToolConfig(Long toolId) {
+        mcpGatewayToolService.remove(Wrappers.<McpGatewayTool>lambdaQuery().eq(McpGatewayTool::getToolId,toolId));
+    }
 }

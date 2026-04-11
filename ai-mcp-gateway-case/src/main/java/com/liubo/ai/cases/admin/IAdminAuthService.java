@@ -8,4 +8,5 @@ import com.liubo.ai.domain.auth.model.entity.RegisterCommandEntity;
  */
 public interface IAdminAuthService {
     void saveGatewayAuth(RegisterCommandEntity commandEntity);
+    void deleteGatewayAuth(String gatewayId);
 }

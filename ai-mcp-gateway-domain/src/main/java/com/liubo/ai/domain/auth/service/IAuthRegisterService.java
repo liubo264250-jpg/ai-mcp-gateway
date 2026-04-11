@@ -9,4 +9,6 @@ import com.liubo.ai.domain.auth.model.entity.RegisterCommandEntity;
 public interface IAuthRegisterService {
 
     String register(RegisterCommandEntity commandEntity);
+
+    void deleteGatewayAuth(String gatewayId);
 }

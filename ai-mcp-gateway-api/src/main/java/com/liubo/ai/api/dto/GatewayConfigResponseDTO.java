@@ -6,8 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author 68
- * 2026/4/6 19:47
+ * 网关配置应答对象
+ *
+ * @author xiaofuge bugstack.cn @小傅哥
+ * 2026/3/24 08:04
  */
 @Data
 @Builder
@@ -16,4 +18,5 @@ import lombok.NoArgsConstructor;
 public class GatewayConfigResponseDTO {
 
     private Boolean success;
+
 }

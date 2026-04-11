@@ -64,4 +64,9 @@ public class AuthRepository implements IAuthRepository{
                 .eq(McpGateway::getStatus, CommonConstant.ENABLE));
         return AuthStatusEnum.GatewayConfig.get(mcpGateway.getAuth());
     }
+
+    @Override
+    public void deleteGatewayAuth(String gatewayId) {
+        mcpGatewayAuthService.remove(Wrappers.<McpGatewayAuth>lambdaQuery().eq(McpGatewayAuth::getGatewayId, gatewayId));
+    }
 }

@@ -11,4 +11,6 @@ public interface IAdminGatewayService {
     void saveGatewayConfig(GatewayConfigCommandEntity commandEntity);
 
     void saveGatewayToolConfig(GatewayToolConfigCommandEntity commandEntity);
+
+    void deleteGatewayToolConfig(Long toolId);
 }

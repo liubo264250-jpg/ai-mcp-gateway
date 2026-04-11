@@ -40,4 +40,10 @@ public class AuthRegisterService implements IAuthRegisterService{
         // 4. 返回结果
         return apiKey;
     }
+
+    @Override
+    public void deleteGatewayAuth(String gatewayId) {
+        repository.deleteGatewayAuth(gatewayId);
+    }
+
 }

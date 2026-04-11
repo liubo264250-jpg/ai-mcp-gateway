@@ -31,4 +31,8 @@ public class AdminGatewayService implements IAdminGatewayService {
     public void saveGatewayToolConfig(GatewayToolConfigCommandEntity commandEntity) {
         gatewayToolConfigService.saveGatewayToolConfig(commandEntity);
     }
+    @Override
+    public void deleteGatewayToolConfig(Long toolId) {
+        gatewayToolConfigService.deleteGatewayToolConfig(toolId);
+    }
 }

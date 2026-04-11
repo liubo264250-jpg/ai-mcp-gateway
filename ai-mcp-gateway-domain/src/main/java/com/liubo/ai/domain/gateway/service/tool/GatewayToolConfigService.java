@@ -26,4 +26,9 @@ public class GatewayToolConfigService implements IGatewayToolConfigService {
     public void updateGatewayToolProtocol(GatewayToolConfigCommandEntity commandEntity) {
         repository.updateGatewayToolProtocol(commandEntity);
     }
+
+    @Override
+    public void deleteGatewayToolConfig(Long toolId) {
+        repository.deleteGatewayToolConfig(toolId);
+    }
 }

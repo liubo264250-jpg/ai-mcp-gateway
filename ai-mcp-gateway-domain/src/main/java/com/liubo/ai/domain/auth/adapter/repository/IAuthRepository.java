@@ -13,4 +13,6 @@ public interface IAuthRepository {
     void insert(McpGatewayAuthVO  mcpGatewayAuthVO);
 
     AuthStatusEnum.GatewayConfig queryGatewayAuthStatus(String gatewayId);
+
+    void deleteGatewayAuth(String gatewayId);
 }
